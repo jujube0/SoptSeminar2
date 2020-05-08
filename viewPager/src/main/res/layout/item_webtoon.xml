@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/webt_item_linearlayout"
+    android:orientation="vertical"
+    android:layout_width="160dp"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/webt_item_imgv"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:scaleType="centerCrop"
+        tools:src="@drawable/aaa"/>
+    <TextView
+        android:id="@+id/webt_item_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="유미와 세포들"
+        android:textStyle="bold"
+        android:layout_marginLeft="7dp"/>
+    <TextView
+        android:id="@+id/webt_item_author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="이재준"
+        android:layout_marginLeft="7dp"/>
+
+</LinearLayout>

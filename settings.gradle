@@ -1,0 +1,2 @@
+include ':viewPager', ':recyclerview'
+rootProject.name='SoptSeminar2'
