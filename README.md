@@ -37,7 +37,7 @@ viewPager는 swipe를 가능하게 하는. bottom navigation은 하단의 탭으
 
 	//main
 	main_viewPager.adapter = MainPagerAdapter(supportFragmentManager)
-	//in fragment: childFragmentManager()
+	//fragment in fragment: childFragmentManager()
 	main_viewPager.offscreenPageLimit=2
 
 	
