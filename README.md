@@ -36,7 +36,8 @@ viewPager는 swipe를 가능하게 하는. bottom navigation은 하단의 탭으
 > indicates that only the current fragment will be in the Lifecycle.State.RESUMED state. All the other Fragments are capped at Lifecycle.State.STARTED
 
 	//main
-	main_viewPager.adapter = MainPagerAdapter(supprotFragmentManager)
+	main_viewPager.adapter = MainPagerAdapter(supportFragmentManager)
+	//in fragment: childFragmentManager()
 	main_viewPager.offscreenPageLimit=2
 
 	
@@ -113,3 +114,31 @@ spancount(한 줄에 몇 개나 넣을 지)를 설정해야함
 	}
 
 *staggeredGridlayoutmanager:불규칙
+
+## Tabs with viewPager
+		
+	
+	private class PagerAdapter(fm: FragmentManager):  
+	    FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){  
+	    override fun getItem(position: Int): Fragment {  
+	        return when(position){  
+	            0 -> Webt_Mon()  
+	            1 -> Webt_Tue()  
+	            else -> Webt_wednes()  
+	        }  
+	    }  
+	  
+    override fun getCount(): Int {  
+        return 3  
+	  }  
+	  // tab의 string 구성
+    override fun getPageTitle(position: Int): CharSequence? {  
+        when(position){  
+            0->return "monday"  
+	  1->return "tuesday"  
+	  else-> return "wednesday"  
+	  }  
+	    }  
+	}
+
+
