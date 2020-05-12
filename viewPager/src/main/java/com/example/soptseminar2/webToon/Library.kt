@@ -1,20 +1,28 @@
 package com.example.soptseminar2.webToon
 
 
+import Webt_Tue
+import Webt_wednes
+import android.annotation.SuppressLint
+import android.app.LocalActivityManager
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TabHost
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import com.example.soptseminar2.R
 import kotlinx.android.synthetic.main.fragment_library.*
+import kotlinx.android.synthetic.main.fragment_webt_wednes.*
 
 /**
  * A simple [Fragment] subclass.
  */
 class Library : Fragment() {
-    var datas= mutableListOf<WebtData>()
-    lateinit var webtAdapter: WebtAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,25 +34,38 @@ class Library : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        webtAdapter= WebtAdapter(view.context)
-        webt_rv.adapter=webtAdapter
-        loadDatas()
+
+
+        viewpager_library.adapter=PagerAdapter(childFragmentManager)
+        tabs.setupWithViewPager(viewpager_library)
+
     }
 
-    private fun loadDatas() {
-        datas.apply {
-            add( WebtData("유미의 세포들","이동건","https://recipe1.ezmember.co.kr/cache/data/goods/20/04/14/1000006742/1000006742_detail_083.jpg"))
-            add(WebtData("복학왕","기안84","https://recipe1.ezmember.co.kr/cache/data/goods/20/03/12/1000006558/1000006558_detail_050.jpg"))
-            add(WebtData("연놈","상하","https://recipe1.ezmember.co.kr/cache/recipe/2019/02/13/1061531003609d41ee128e7434dc75871.jpg"))
-            add( WebtData("유미의 세포들","이동건","https://recipe1.ezmember.co.kr/cache/data/goods/20/04/14/1000006742/1000006742_detail_083.jpg"))
-            add(WebtData("복학왕","기안84","https://recipe1.ezmember.co.kr/cache/data/goods/20/03/12/1000006558/1000006558_detail_050.jpg"))
-            add(WebtData("연놈","상하","https://recipe1.ezmember.co.kr/cache/recipe/2019/02/13/1061531003609d41ee128e7434dc75871.jpg"))
-            add( WebtData("유미의 세포들","이동건","https://recipe1.ezmember.co.kr/cache/data/goods/20/04/14/1000006742/1000006742_detail_083.jpg"))
 
+
+
+}
+@SuppressLint("WrongConstant")
+//viewpager와 연결
+private class PagerAdapter(fm: FragmentManager):
+    FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
+    override fun getItem(position: Int): Fragment {
+        return when(position){
+            0 -> Webt_Mon()
+            1 -> Webt_Tue()
+            else -> Webt_wednes()
         }
-        webtAdapter.datas=datas
-        webtAdapter.notifyDataSetChanged()
     }
 
+    override fun getCount(): Int {
+        return 3
+    }
 
+    override fun getPageTitle(position: Int): CharSequence? {
+        when(position){
+            0->return "monday"
+            1->return "tuesday"
+            else-> return "wednesday"
+        }
+    }
 }
